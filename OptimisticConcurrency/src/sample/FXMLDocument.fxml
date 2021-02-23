@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="169.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXMLDocumentController">
+    <children>
+        <Button fx:id="txtLoadData" layoutX="18.0" layoutY="34.0" onAction="#handleLoadData" text="Load Data" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <TextField fx:id="txtFirstName" layoutX="18.0" layoutY="107.0" prefHeight="25.0" prefWidth="87.0" />
+      <TextField fx:id="txtLastName" layoutX="116.0" layoutY="107.0" prefHeight="25.0" prefWidth="87.0" />
+      <TextField fx:id="txtAge" layoutX="218.0" layoutY="107.0" prefHeight="25.0" prefWidth="87.0" />
+      <Label layoutX="18.0" layoutY="83.0" text="First Name:" />
+      <Label layoutX="116.0" layoutY="83.0" text="Last Name:" />
+      <Label layoutX="218.0" layoutY="83.0" text="Age:" />
+      <Button fx:id="btnUpdateData" layoutX="105.0" layoutY="34.0" onAction="#handleUpdateData" prefHeight="25.0" prefWidth="70.0" text="Save Data" />
+      <TextField fx:id="txtRowVersion" editable="false" layoutX="339.0" layoutY="107.0" prefHeight="25.0" prefWidth="59.0" />
+      <Label layoutX="339.0" layoutY="83.0" text="Row Version:" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,45 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 1, 2020, 9:35:48 PM
+    Author     : Søren Spangsberg
+*/
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Molle:400i');
+
+AnchorPane
+{
+    -fx-background-color: lightgreen;
+    -fx-font-family: 'Molle', cursive;
+}
+
+Label
+{
+    -fx-text-decoration: underline; 
+   
+}
+
+TextField
+{
+    -fx-background-color: blue;
+}
+
+
+.login_labels
+{
+    -fx-text-fill: white; /* "color" in normal CSS */
+    -fx-text-decoration: underline;
+    -fx-font-weight: bold;
+}
+
+    
+
+
+
+
+
