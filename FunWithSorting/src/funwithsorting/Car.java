@@ -1,26 +1,33 @@
 
 package funwithsorting;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  *
  * @author smsj
  */
-public class Car implements Comparable<Car>{
+public class Car implements Comparable<Car> {
     
     private String brand; //BMW, VW, Peugeot, Ferrari
     private String model; //M5, Golf
     private String color; //red, green, blue
     private int topSpeed;
 
+    /**
+     * Default constructor to create object
+     * @param brand
+     * @param model
+     * @param color
+     * @param topSpeed
+     */
     public Car(String brand, String model, String color, int topSpeed) {
         this.brand = brand;
         this.model = model;
         this.color = color;
         this.topSpeed = topSpeed;
     }
-        
     
     public String getBrand() {
         return brand;
@@ -54,6 +61,10 @@ public class Car implements Comparable<Car>{
         this.topSpeed = topSpeed;
     }
 
+    /**
+     * Returns a nicely formatted String representation of a Car.
+     * @return
+     */
     @Override
     public String toString() {
         return "Car{" + "brand=" + brand + ", model=" + model + ", color=" + color + ", topSpeed=" + topSpeed + '}';
@@ -61,46 +72,6 @@ public class Car implements Comparable<Car>{
 
     @Override
     public int compareTo(Car other) {
-        return this.color.compareTo(other.color);
-    }   
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.brand);
-        hash = 41 * hash + Objects.hashCode(this.model);
-        hash = 41 * hash + Objects.hashCode(this.color);
-        hash = 41 * hash + this.topSpeed;
-        return hash;
+        return this.model.compareTo(other.model);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Car other = (Car) obj;
-        if (this.topSpeed != other.topSpeed) {
-            return false;
-        }
-        if (!Objects.equals(this.brand, other.brand)) {
-            return false;
-        }
-        if (!Objects.equals(this.model, other.model)) {
-            return false;
-        }
-        if (!Objects.equals(this.color, other.color)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
 }

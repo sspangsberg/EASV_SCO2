@@ -1,5 +1,8 @@
 package bankproject;
 
+/**
+ * smsj
+ */
 public class BankAccount {
 
     // Constants:
@@ -7,23 +10,33 @@ public class BankAccount {
 
     // Instance fields:
     private int accNumber;
-
     private double balance;
-
     private double interestRate;
 
-    // Constructors:
-    // Creates a new BankAccount with a zero balance and default interest rate.
+
+    /**
+     * Constructor.
+     * Creates a new BankAccount with a zero balance and default interest rate.
+     *
+     * @param accNumber
+     */
     public BankAccount(int accNumber) {
         this.accNumber = accNumber;
         this.interestRate = -1; //interest rate not set
     }
 
-    // Creates a new BankAccont with the given initial balance and default interest rate.
+
+    /**
+     * Creates a new BankAccount with the given initial balance and default interest rate.
+     *
+     * @param accNumber
+     * @param initialBalance
+     * @throws IllegalArgumentException if initialBalance is < 0
+     */
     public BankAccount(int accNumber, double initialBalance) throws IllegalArgumentException {
 
-        if (initialBalance < 0) //negative initial balance. Should not be possible
-        {
+        //negative initial balance. Should not be possible
+        if (initialBalance < 0) {
             throw new IllegalArgumentException("initialBalance must be positive");            
         }
         //create the object
@@ -34,18 +47,29 @@ public class BankAccount {
         }
     }
 
-    // Operations:
-    // returns the account number
+
+    /**
+     * Returns the account number
+     * @return
+     */
     public int getAccountNumber() {
         return accNumber;
     }
 
-    // returns the current balance
+
+    /**
+     * Returns the current balance
+     * @return
+     */
     public double getBalance() {
         return balance;
     }
 
-    // returns the current interest rate
+
+    /**
+     * Returns the current interest rate (or DEFAULT_INTEREST_RATE if interestRate == -1)
+     * @return
+     */
     public double getInterestRate() {
         if (interestRate != -1)
             return interestRate;
@@ -53,22 +77,32 @@ public class BankAccount {
             return DEFAULT_INTEREST_RATE;
     }
 
-    // adds the given amount to the balance.
+
+    /**
+     * Adds the given amount to the balance.
+     * @param amount
+     * @throws IllegalArgumentException if amount < 0
+     */
     public void deposit(double amount) throws IllegalArgumentException {
-        if (amount < 0) //negative amount
-            throw new IllegalArgumentException("amount must be a positive number");
-        else        
-        this.balance = this.balance + amount;
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount must be a positive number");
+        }
+        else {
+            this.balance = this.balance + amount;
+        }
     }
 
-    // subtracts the given amount from the balance
+
+    /**
+     * Subtracts the given amount from the balance
+     * @param amount
+     * @throws IllegalArgumentException if amount < 0 OR amount > account balance
+     */
     public void withdraw(double amount) throws IllegalArgumentException {
-        if (amount < 0) //negative amount
-        {
+        if (amount < 0) {
             throw new IllegalArgumentException("amount must be a positive number");
         }
-        else if (amount > this.balance) //not enough money to withdraw
-        {
+        else if (amount > this.balance) {
             throw new IllegalArgumentException("amount to withdraw exceeds available money");
         }
         else {
@@ -77,20 +111,33 @@ public class BankAccount {
     }
     
 
-    // adjusts the interest rate to the given value.
+    /**
+     * Adjusts the interest rate to the given % value. Must be 1-10% (both inclusive)
+     * Is specified as a double, so 1% = 0.01
+     * @param interestRate
+     * @throws IllegalArgumentException
+     */
     public void setInterestRate(double interestRate) throws IllegalArgumentException {
-        if (interestRate < 0.10 && interestRate > 0.01) //valid range
+        //valid range
+        if (interestRate <= 0.10 && interestRate >= 0.01) {
             this.interestRate = interestRate;
-        else
-            throw new IllegalArgumentException("interestRate outside valid range (0.0-0-10)");
+        }
+        else {
+            throw new IllegalArgumentException("interestRate outside valid range (0.01-0.10)");
+        }
     }
 
-    // Adds interest to the balance
+
+    /**
+     * Adds interest to the balance
+     */
     public void addInterest() {
-        if (interestRate != -1) //interest rate set to something other than disabled (-1)
+        //interest rate set to something other than disabled (-1)
+        if (interestRate != -1) {
             balance += interestRate * balance;
-        else
+        }
+        else {
             balance += DEFAULT_INTEREST_RATE * balance;
+        }
     }
-
 }

@@ -162,7 +162,7 @@ public class FunWithRecursion {
      */
     public static void countDown(int counter) {
         System.out.print(counter + " "); //base case
-        if (counter > 0) //recursive call
+        if (co+unter > 0) //recursive call
             countDown(counter - 1); // countDown() calls itself!!!!
 
         /*
