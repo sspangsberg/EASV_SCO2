@@ -37,7 +37,7 @@ public class BankAccount {
 
         //negative initial balance. Should not be possible
         if (initialBalance < 0) {
-            throw new IllegalArgumentException("initialBalance must be positive");            
+            throw new IllegalArgumentException("InitialBalance must be positive");
         }
         //create the object
         else {
@@ -100,10 +100,10 @@ public class BankAccount {
      */
     public void withdraw(double amount) throws IllegalArgumentException {
         if (amount < 0) {
-            throw new IllegalArgumentException("amount must be a positive number");
+            throw new IllegalArgumentException("Amount must be a positive number");
         }
         else if (amount > this.balance) {
-            throw new IllegalArgumentException("amount to withdraw exceeds available money");
+            throw new IllegalArgumentException("Amount to withdraw exceeds available money");
         }
         else {
             this.balance = this.balance - amount;
@@ -123,7 +123,7 @@ public class BankAccount {
             this.interestRate = interestRate;
         }
         else {
-            throw new IllegalArgumentException("interestRate outside valid range (0.01-0.10)");
+            throw new IllegalArgumentException("InterestRate outside valid range (0.01-0.10)");
         }
     }
 
