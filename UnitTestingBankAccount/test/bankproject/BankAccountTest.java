@@ -42,14 +42,10 @@ public class BankAccountTest {
         double amount = -100.00;
         BankAccount account = new BankAccount(1111, initialBalance);
 
-
-
         // Act + assert
         Exception err = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            // code....
+            account.deposit(amount);
         });
-
-
 
         // Extra assert
         String expectedMessage = "Amount must be a positive number";
