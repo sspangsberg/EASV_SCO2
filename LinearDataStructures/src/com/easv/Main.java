@@ -11,15 +11,33 @@ public class Main {
         Car c3 = new Car("BMW", "m5", "black", 212);
         Car c4 = new Car("Tesla", "Model S", "red", 250);
 
-        // ArrayList
-        List<Car> cars = new ArrayList<>();
+        //ArrayList - start
+        //Time Complexities:
+        // add(element)        = O(1)
+        // add(index, element) = O(N)
+        // get(index)          = O(1)
+        // remove(index)       = O(N)
+        // List<Car> cars = new ArrayList<>();
+
+
+        //LinkedList - start
+        //Time Complexities:
+        // add(element)        = O(1)
+        // add(index, element) = O(1)
+        // get(index)          = O(N)
+        // remove(index)       = O(1)
+        List<Car> cars = new LinkedList<>();
+
 
         cars.add(c1);
         cars.add(c2);
         cars.add(c3);
-        cars.add(c4);
+        cars.add(0, c4);
 
         iterateCollection(cars);
+
+        cars.remove(0);
+        System.out.println("Car at index #2:" + cars.get(2));
 
 
 //        List<String> names = new ArrayList<>();
@@ -33,15 +51,15 @@ public class Main {
 
 
         // LinkedList
-        List<Car> linkedCars = new LinkedList<>();
-
-        cars.add(c1);
-        cars.add(c2);
-        cars.add(c3);
-        cars.add(c4);
-
-
-        iterateCollection(cars);
+//        List<Car> linkedCars = new LinkedList<>();
+//
+//        cars.add(c1);
+//        cars.add(c2);
+//        cars.add(c3);
+//        cars.add(c4);
+//
+//
+//        iterateCollection(cars);
 
     }
 
