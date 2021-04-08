@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
+import funwithcollections.Person;
+
 /**
  *
  * @author Søren Spangsberg
@@ -15,19 +17,18 @@ public class PersonManager {
 
     //List<Person> persons = new ArrayList();
     //LinkedList<Person> persons = new LinkedList();
-    Deque<Person> persons = new ArrayDeque();
-    //Deque<Person> persons = new LinkedList();
+    //Deque<Person> persons = new ArrayDeque();
+    Deque<Person> persons = new LinkedList();
     
     //PriorityQueue<Person> persons = new PriorityQueue();
     
     
     private static PersonManager _instance = null;
 
-    private PersonManager() {
-    }
+    private PersonManager() {}
 
     /**
-     *
+     * Singleton getInstance
      * @return
      */
     public static PersonManager getInstance() {
@@ -38,62 +39,63 @@ public class PersonManager {
         return _instance;
     }
 
-    // ArrayList START **************************************************
+//     ArrayList START **************************************************
     
 //    /**
-//     * 
-//     * @return 
+//     *
+//     * @return
 //     */
 //    public List<Person> getPersons() {
 //        return persons;
 //    }
 //
 //    /**
-//     * 
-//     * @param persons 
+//     *
+//     * @param persons
 //     */
 //    public void setPersons(List<Person> persons) {
 //        this.persons = persons;
-//    }    
+//    }
+
     
     // ArrayList END **************************************************
     
     
     // LinkedList START **************************************************
-    
+//
 //    /**
-//     * 
-//     * @return 
+//     *
+//     * @return
 //     */
 //    public LinkedList<Person> getPersons() {
 //        return persons;
 //    }
 //
 //    /**
-//     * 
-//     * @param persons 
+//     *
+//     * @param persons
 //     */
 //    public void setPersons(LinkedList<Person> persons) {
 //        this.persons = persons;
 //    }
-//    
+//
 //    /**
-//     * 
-//     * @return 
+//     *
+//     * @return
 //     */
-//    public Person getNextPerson() {        
+//    public Person getNextPerson() {
 //        return this.persons.removeFirst();
 //    }
-    
-//    
+//
+//
 //    /**
-//     * 
-//     * @return 
+//     *
+//     * @return
 //     */
 //    public Person whoIsNext() {
 //        return this.persons.getFirst();
 //    }
-        
+//
     // LinkedList END **************************************************
         
     
@@ -133,7 +135,7 @@ public class PersonManager {
         return this.persons.peek();
     }
 
-//    
+
     // DeQueue END **************************************************
     
     
@@ -203,5 +205,4 @@ public class PersonManager {
             this.persons.add(person);
         }
     }
-
 }

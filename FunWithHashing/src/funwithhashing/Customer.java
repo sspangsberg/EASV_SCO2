@@ -21,13 +21,13 @@ public class Customer {
         return phoneNumber;
     }
 
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.phoneNumber);
-        hash = 13 * hash + Objects.hashCode(this.name);
-        hash = 13 * hash + Objects.hashCode(this.email);
-        return hash;
+        int result = phoneNumber != null ? phoneNumber.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -53,8 +53,8 @@ public class Customer {
         }
         return true;
     }
-    
-    
+
+
 
     @Override
     public String toString() {
