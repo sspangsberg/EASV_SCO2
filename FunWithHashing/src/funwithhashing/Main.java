@@ -32,6 +32,7 @@ public class Main {
      */
     private static void hashSetMapTest() {
 
+
         Customer c1 = new Customer("22222222", "Homer Simpsons", "homer@simpsons.com");
         Customer c2 = new Customer("11111111", "Mr. Burns", "mr@burns.com");
         Customer c3 = new Customer("11111112", "Mr. Burns", "mr@burns.com");
@@ -84,7 +85,7 @@ public class Main {
      * 
      */
     private static  void performanceTest() {
-        final int SIZE = 20_000_000;
+        final int SIZE = 1_000_000;
 
         HashMap hm = new HashMap(SIZE);
         Hashtable ht = new Hashtable();
