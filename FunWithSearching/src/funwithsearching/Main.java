@@ -1,9 +1,13 @@
-package simplesearching;
+package funwithsearching;
 
+// Project imports
+import funwithsearching.algorithm.BinarySearch;
+import funwithsearching.algorithm.SequentialSearch;
+
+// Java imports
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,25 +23,30 @@ public class Main {
         
         //Performance measurement
         final int SIZE = 1_000_000;
-        List<String> objects = new ArrayList<>();
-        System.out.println("Loading strings into list...");
+        List<Movie> objects = new ArrayList<>();
+        System.out.println("Loading Movies into list...");
         
         for (int i = 0; i < SIZE; i++) {
-            objects.add(new String("A string #" + i));            
+            objects.add(new Movie(i, "Awesome #" + i));
         }
-        String wanted = "The string I'm looking for";
+        Movie wanted = new Movie(SIZE + 1, "Inception");
         objects.add(wanted); //add it last to get worst case performance time
-        
+
         System.out.println("Done loading...");
                 
-        //create a new Searcher object with a search strategy of SequentialSearch
+
+
+        System.out.println("----------------------------------------------------------------");
+        System.out.println("Sequential Search benchmark....");
         Searcher s = new Searcher(new SequentialSearch());
-        
+
         long start = System.currentTimeMillis();
-        int result = s.executeSearch(objects, wanted);
+
+        Movie result = s.doSearch(objects, wanted);
         System.out.println("Time elapsed: " + (System.currentTimeMillis()-start) + " ms");        
-        System.out.println("Search result (Sequential Search): index:" + result + " ("+ objects.get(result) + ")");
-        
+        System.out.println("Search result (Sequential Search): " + result);
+
+
         //FIXME: change strategy to binary search and re-test
     }
 }

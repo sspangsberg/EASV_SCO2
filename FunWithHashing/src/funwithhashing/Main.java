@@ -20,10 +20,10 @@ public class Main {
      */
     public static void main(String[] args) {
 
-//      funWithHashing();
+//     funWithHashing();
 
-//      hashSetMapTest();
-      performanceTest();
+  //   hashSetMapTest();
+     performanceTest();
     }
 
 
@@ -42,7 +42,7 @@ public class Main {
 //        Map<String,Customer> customersMap = new HashMap();
 //
 //        //HashMap
-//        customersMap.put(c1.getPhoneNumber(), c1);
+//        customersMap.put(c1, "saasdfsafasdfasd");
 //        customersMap.put(c2.getPhoneNumber(), c2);
 //        customersMap.put(c3.getPhoneNumber(), c3);
 //        customersMap.put("11111112", c3); //HashMap does not allow duplicate keys, but allows duplicate values
@@ -85,7 +85,7 @@ public class Main {
      * 
      */
     private static  void performanceTest() {
-        final int SIZE = 1_000_000;
+        final int SIZE = 10_000_000;
 
         HashMap hm = new HashMap(SIZE);
         Hashtable ht = new Hashtable();
@@ -98,7 +98,7 @@ public class Main {
         //HashMap O(1) - constant time
         hm.put("MyKeyNumber: " + SIZE + 1, WANTED);
         for (int i = 0; i < SIZE; i++)
-            hm.put("MyKeyNumber: " + i, WANTED);
+            hm.put("MyKeyNumber: " + i, "Not the droid you are looking for");
         
         
         //HashSet (Does not allow duplicate values...)
