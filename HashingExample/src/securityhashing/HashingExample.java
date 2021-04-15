@@ -42,7 +42,7 @@ public class HashingExample
     private static String runPBKDF2Algo(byte[] salt, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         //Create instance of PBKDF2 hashing algorithm - with parameters (256 bits keylength)
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 1000, 256);
+        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 5000, 256);
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 
         byte[] hash = factory.generateSecret(spec).getEncoded();

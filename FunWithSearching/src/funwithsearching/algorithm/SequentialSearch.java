@@ -13,7 +13,7 @@ import java.util.List;
 public class SequentialSearch implements ISearchStrategy {
 
     /**
-     * Simple sequential search implementation that
+     * Simple O(N) sequential search implementation that iterates over the list
      * @param objects
      * @param wanted
      * @param <T>
