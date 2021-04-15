@@ -47,6 +47,21 @@ public class Main {
         System.out.println("Search result (Sequential Search): " + result);
 
 
+
+        System.out.println("----------------------------------------------------------------");
+        System.out.println("Binary Search benchmark....");
+        s = new Searcher(new BinarySearch());
+        Collections.shuffle(objects);
+        // Binary Search expects the list to be sorted....
+        Collections.sort(objects);
+
+        start = System.currentTimeMillis();
+
+        result = s.doSearch(objects, wanted);
+        System.out.println("Time elapsed: " + (System.currentTimeMillis()-start) + " ms");
+        System.out.println("Search result (Binary Search): " + result);
+
+
         //FIXME: change strategy to binary search and re-test
     }
 }
