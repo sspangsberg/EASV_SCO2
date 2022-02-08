@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ch.makery.address.util","l":"DateUtil"},{"p":"ch.makery.address","l":"MainApp"},{"p":"ch.makery.address.model","l":"Person"},{"p":"ch.makery.address.controller","l":"PersonEditDialogController"},{"p":"ch.makery.address.controller","l":"PersonOverviewController"}];updateSearchResults();

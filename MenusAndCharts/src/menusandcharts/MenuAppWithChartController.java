@@ -39,7 +39,7 @@ public class MenuAppWithChartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        borderPane.setCenter(buildPieChart());
     }
 
     @FXML
@@ -80,22 +80,27 @@ public class MenuAppWithChartController implements Initializable {
 
         //Preparing ObservbleList object         
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("JavaScript", 2300),
-                new PieChart.Data("Python", 1000),
-                new PieChart.Data("Java", 986),
-                new PieChart.Data("Ruby", 870),
-                new PieChart.Data("C++", 413),
-                new PieChart.Data("C#", 326));
+                new PieChart.Data("JavaScript", 65),
+                new PieChart.Data("HTML/CSS", 56),
+                new PieChart.Data("Python", 48),
+                new PieChart.Data("SQL", 47),
+                new PieChart.Data("Java", 35),
+                new PieChart.Data("TypeScript", 30),
+                new PieChart.Data("C#", 28),
+                new PieChart.Data("C++", 24),
+                new PieChart.Data("PHP", 22),
+                new PieChart.Data("C#", 21));
 
         PieChart pieChart = new PieChart(pieChartData); //Creating a Pie chart      
 
         //attach tooltips
         createToolTips(pieChart);
 
-        pieChart.setTitle("Most Popular Programming Language"); //Setting the title of the Pie chart
+        pieChart.setTitle("Most Popular Programming Language %"); //Setting the title of the Pie chart
         pieChart.setClockwise(true); //setting the direction to arrange the data 
         pieChart.setLabelLineLength(50); //Setting the length of the label line 
-        pieChart.setLabelsVisible(true); //Setting the labels of the pie chart visible  
+        pieChart.setLabelsVisible(true); //Setting the labels of the pie chart visible
+        pieChart.setLegendVisible(false);
         pieChart.setStartAngle(180);
 
         //bind value and label on each pie slice to reflect changes
@@ -129,7 +134,7 @@ public class MenuAppWithChartController implements Initializable {
                 borderPane.setCenter(buildBarChart());
                 System.out.println("Handling with inner anonymous class");
             }
-        }); 
+        });
         
         
         //Java8

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ch.makery.address"},{"l":"ch.makery.address.controller"},{"l":"ch.makery.address.model"},{"l":"ch.makery.address.util"}];updateSearchResults();
