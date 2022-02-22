@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  *
  * @author sspangsberg
  */
-public class JFeonixExamples extends Application {
+public class MainApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

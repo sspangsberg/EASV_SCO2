@@ -14,7 +14,7 @@ public class TestLambda {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        testLambda1();
+        testLambda2();
     }
 
     public static void testLambda1() {
@@ -40,27 +40,29 @@ public class TestLambda {
 
     public static void testLambda2() {
 
-//                new Thread(()-> {
-//                System.out.println("Printing from Lambda....");
-//                System.out.println("Test two");
-//                System.out.println("Test three");
-//            }).start();
+                new Thread(()-> {
+                System.out.println("Printing from Lambda....");
+                System.out.println("Test two");
+                System.out.println("Test three");
+            }).start();
 
+        /*
         // Anonymous inner class - can implement MULTIPLE methods from any interface...
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run(){
-//                System.out.println("Printing from inner annonymous class....");
-//            }
-//        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run(){
+                System.out.println("Printing from inner annonymous class....");
+            }
+        }).start();
+        */
 
         //now we run on a new and separate Thread :)
-        Thread myCoolThread = new Thread(new SimpleThread());
-        myCoolThread.start();
+        //Thread myCoolThread = new Thread(new SimpleThread());
+        //myCoolThread.start();
 
         //This example does not create a new Thread
-//        SimpleThread mySimpleThread = new SimpleThread();
-//        mySimpleThread.run();
+        //SimpleThread mySimpleThread = new SimpleThread();
+        //mySimpleThread.run();
     }
 
     public static void testLambda3() {

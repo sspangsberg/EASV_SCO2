@@ -126,23 +126,18 @@ public class MenuAppWithChartController implements Initializable {
                 });
                
         
-        //Pre Java8
-        //Add event handler to change chart type
+        //Before Java 8
+        //Add event handler to change chart type (anonymous inner class)
         miSwitchToBarChart.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 borderPane.setCenter(buildBarChart());
-                System.out.println("Handling with inner anonymous class");
             }
         });
-        
-        
-        //Java8
-        miSwitchToBarChart.setOnAction((ActionEvent event) -> { 
-                borderPane.setCenter(buildBarChart());
-                  System.out.println("Handling with lambda expression with typed input parameter");
-       
-        });
+
+
+        //Java 8 and newer (lambda expression)
+        miSwitchToBarChart.setOnAction(event -> { borderPane.setCenter(buildBarChart()); });
 
         
         return pieChart;

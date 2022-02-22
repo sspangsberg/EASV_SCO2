@@ -20,10 +20,10 @@ public class DBConnector {
 
     public DBConnector() {
         this.dataSource = new SQLServerDataSource();
-        this.dataSource.setServerName("");
-        this.dataSource.setDatabaseName("");
-        this.dataSource.setUser("");
-        this.dataSource.setPassword("");
+        this.dataSource.setServerName("10.176.111.31");
+        this.dataSource.setDatabaseName("UserDB42");
+        this.dataSource.setUser("smsj");
+        this.dataSource.setPassword("easv_smsj");
     }
 
     public Connection getConnection() throws SQLServerException {
