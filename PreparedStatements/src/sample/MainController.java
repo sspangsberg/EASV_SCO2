@@ -76,7 +76,10 @@ public class MainController implements Initializable {
             Statement stmt = conn.createStatement();
 
             // ' or ''=' (get user info)
-            // '; truncate table Users; -- (not good..)
+            // '; drop table Users; -- (not good..)
+
+            // '; truncate table Users; -- (empty table)
+
 
             String sql = "SELECT * FROM Users WHERE username ='" + uname + "' AND password = '" + pw + "'";
             ResultSet rs = stmt.executeQuery(sql);

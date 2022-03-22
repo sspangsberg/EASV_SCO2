@@ -74,6 +74,6 @@ public class Movie implements Comparable<Movie> {
 
     @Override
     public int compareTo(Movie o) {
-       return this.getProductionYear() - o.getProductionYear();
-    }    
+        return this.getProductionYear() - o.getProductionYear();
+    }
 }
