@@ -34,14 +34,26 @@ public class MovieSortingProject {
         movies.add(m6);
         
         Collections.shuffle(movies);
-                       
+
+
+
+        /*
         //Create object from class "classic way"
         //Comparator<Movie> titleSort = new TitleComparator();
         Comparator<Movie> ratingSort = new RatingComparator();
-        
+
+        Comparator<Movie> reversedComparator = Collections.reverseOrder(ratingSort);
+        */
+
         //Lambda expression Comparator<Movie>
-        //Comparator<Movie> titleSort = (Movie first, Movie second) -> first.getTitle().compareTo(second.getTitle());
+        Comparator<Movie> titleSort = (Movie first, Movie second) -> first.getTitle().compareTo(second.getTitle());
+
+
+        //Collections.sort(movies, titleSort);
+
         Comparator<Movie> ratingSortLambda = (Movie first, Movie second) -> {
+
+            //return first.getRating() - second.getRating();
 
             //explicit syntax
             /*
@@ -57,17 +69,20 @@ public class MovieSortingProject {
             return Double.compare(first.getRating(),second.getRating());
         };
 
+
+
         //Compare by productionYear and then rating (multiple properties)
         //Method references
+
         Comparator<Movie> compareByChaining = Comparator
                 .comparing(Movie::getProductionYear)
                 .thenComparing(Movie::getRating);
 
+        Collections.sort(movies, compareByChaining);
 
         //reverse it
         //Comparator<Movie> reversedComparator = Collections.reverseOrder(titleSort);
-        Collections.sort(movies);
-        
+
         //Collections.sort(movies); //sort using Movie's compareTo() method
         
         for (Movie m: movies) {

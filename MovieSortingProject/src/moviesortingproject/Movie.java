@@ -6,12 +6,12 @@ package moviesortingproject;
  * @author Søren Spangsberg
  */
 public class Movie implements Comparable<Movie> {
-    private int id;
+    private final int id;
     private String title;
     private String director;
     private String genre;
     private int productionYear;
-    private Double rating;
+    private double rating;
 
     public Movie(int id, String title, String director, String genre, int productionYear, double rating) {
         this.id = id;
@@ -72,8 +72,11 @@ public class Movie implements Comparable<Movie> {
         return "Movie{" + "id=" + id + ", title=" + title + ", director=" + director + ", genre=" + genre + ", productionYear=" + productionYear + ", rating=" + rating + '}';
     }
 
+
+
     @Override
-    public int compareTo(Movie o) {
-        return this.getProductionYear() - o.getProductionYear();
+    public int compareTo(Movie other) {
+        return this.getTitle().compareTo(other.getTitle());
     }
+
 }
