@@ -71,11 +71,13 @@ public class Movie implements Comparable<Movie> {
         return result;
     }
 
+
     /**
      * Enables objects of this class to be compared by title and sorted...
      * @param other
      * @return
      */
+
     @Override
     public int compareTo(Movie other) {
         return this.title.compareTo(other.title);

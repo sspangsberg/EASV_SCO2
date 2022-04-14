@@ -21,7 +21,7 @@ public class Customer {
         return phoneNumber;
     }
 
-
+    /*
     @Override
     public int hashCode() {
         int result = phoneNumber != null ? phoneNumber.hashCode() : 0;
@@ -53,7 +53,7 @@ public class Customer {
         }
         return true;
     }
-
+    */
 
 
     @Override

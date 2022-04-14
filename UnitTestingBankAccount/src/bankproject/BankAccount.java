@@ -85,7 +85,7 @@ public class BankAccount {
      */
     public void deposit(double amount) throws IllegalArgumentException {
         if (amount < 0) {
-            throw new IllegalArgumentException("Amount must be a positive number");
+            throw new IllegalArgumentException("Amount must be a positive number22");
         }
         else {
             this.balance = this.balance + amount;

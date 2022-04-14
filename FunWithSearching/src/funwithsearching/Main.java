@@ -22,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
         
         //Performance measurement
-        final int SIZE = 1_000_000;
+        final int SIZE = 8_000_000;
         List<Movie> objects = new ArrayList<>();
         System.out.println("Loading Movies into list...");
         
@@ -52,10 +52,13 @@ public class Main {
         System.out.println("Binary Search benchmark....");
         s = new Searcher(new BinarySearch());
         Collections.shuffle(objects);
-        // Binary Search expects the list to be sorted....
         Collections.sort(objects);
 
+        // Binary Search expects the list to be sorted....
         start = System.currentTimeMillis();
+
+
+
 
         result = s.doSearch(objects, wanted);
         System.out.println("Time elapsed: " + (System.currentTimeMillis()-start) + " ms");
