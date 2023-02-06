@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="351.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.threadsandbindings.MainController">
+    <children>
+        <Button fx:id="btnHeavyTask" layoutX="65.0" layoutY="231.0" onAction="#handleStartHeavyTask" prefHeight="53.0" prefWidth="221.0" text="Start Heavy Task">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Button>
+        <Label fx:id="lblDescription" layoutX="219.0" layoutY="42.0" minHeight="16" minWidth="69" text="bound to each other" />
+        <TextField fx:id="txtBindUni" layoutX="44.0" layoutY="85.0" promptText="Uni-directionally" />
+        <TextField fx:id="txtDualBind" layoutX="44.0" layoutY="38.0" promptText="Bi-directionally" />
+        <Label fx:id="lblHeavyTask" layoutX="141.0" layoutY="306.0" minHeight="16" minWidth="69" />
+        <Slider fx:id="slider" layoutX="55.0" layoutY="139.0" />
+      <Separator layoutX="25.0" layoutY="194.0" prefHeight="5.0" prefWidth="300.0" />
+    </children>
+</AnchorPane>

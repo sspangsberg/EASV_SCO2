@@ -7,9 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib" level="application" />
-    <orderEntry type="library" name="sqljdbc42" level="project" />
-    <orderEntry type="library" name="javax.xml.bind:jaxb-api:2.4.0-b180830.0359" level="project" />
-    <orderEntry type="library" name="lib1" level="application" />
   </component>
 </module>

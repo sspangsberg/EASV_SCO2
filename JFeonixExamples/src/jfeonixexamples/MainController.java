@@ -109,10 +109,10 @@ public class MainController implements Initializable {
         lblHeavyTask.setText("Start heavy task...");
 
         //Create new thread using a Lambda expression to handle the heavy task
-        Thread t = new Thread(() -> {
+        //Thread t = new Thread(() -> {
             simulateHardWork(); //the work...
-        });
-        t.start();
+        //});
+        //t.start();
     }
 
     /**
