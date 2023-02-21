@@ -69,11 +69,12 @@ public class MainController implements Initializable {
         btnHeavyTask.setText("Working...");
         lblHeavyTask.setText("");
 
-        // Create new thread using a Lambda expression to handle the heavy task
+
         Thread t = new Thread(() -> {
             simulateHardWork();
         });
         t.start();
+
 
     }
 
@@ -87,22 +88,9 @@ public class MainController implements Initializable {
                 System.out.println("Doing some boring work on item #" + i);
             }
 
-            // Update the UI (in a controlled fashion)
-            // Using Lambda expression
-            Platform.runLater(() -> {
-                lblHeavyTask.setText("Done working");
-                btnHeavyTask.setDisable(false);
-                btnHeavyTask.setText("Start Heavy Task");
-            });
-
-            // Using anonymous class
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    // same code...
-                }
-            });
-
+            btnHeavyTask.setDisable(false);
+            btnHeavyTask.setText("Start Heavy Task");
+            lblHeavyTask.setText("Done");
         } catch (InterruptedException e) { }
     }
 

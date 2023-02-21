@@ -14,7 +14,7 @@ public class TestLambda {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        testLambda2();
+        testLambda3();
     }
 
     public static void testLambda1() {
@@ -35,7 +35,7 @@ public class TestLambda {
         System.out.println("------------------");
 
         //Lambda expression - single line
-        movies.forEach((movie) -> System.out.println(movie) );
+        movies.forEach((String movie) -> System.out.println(movie) );
     }   
 
     public static void testLambda2() {
@@ -68,7 +68,9 @@ public class TestLambda {
     public static void testLambda3() {
         
         // lambda expression to define the calculate method 
-        ISquare s = (int x)->x+x;
+        ISquare s = ((x) -> {
+            return x+x;
+        });
         //Box b = new Box(); //Without Lambda - we need to create class that implements the interface
                 
         // parameter passed and return type must be 

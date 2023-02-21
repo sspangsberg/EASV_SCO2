@@ -32,7 +32,7 @@ public class LoginUIController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lblUsername.setStyle("-fx-text-fill: lightred"); //bad practice?
+        lblUsername.setStyle("-fx-text-fill: red"); //bad practice?
     }        
 
     @FXML

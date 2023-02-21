@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -34,6 +35,8 @@ public class MainController implements Initializable {
     @FXML
     private ProgressBar pbProgress;
 
+    private String output = "";
+
     /**
      * Initializes the controller class.
      */
@@ -45,16 +48,20 @@ public class MainController implements Initializable {
 
     @FXML
     private void handleLogin(ActionEvent event) {
+        txtOutput.setText("");
         String inputUsername = txtUsername.getText();
         String inputPassword = txtPassword.getText();
+
+
+        // Validate / sanitize input
+        if (!validateInput())
+            return;
 
         btnLogin.setDisable(true);
         txtUsername.setDisable(true);
         txtPassword.setDisable(true);
         pbProgress.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
         pbProgress.setDisable(false);
-
-
 
         Thread t = new Thread(() -> {
             statementsVSPreparedStatements(inputUsername, inputPassword);
@@ -65,12 +72,34 @@ public class MainController implements Initializable {
 
     /**
      *
+     * @return
+     */
+    private boolean validateInput() {
+
+        if (txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    txtUsername.getScene().getWindow(),
+                    "Invalid Input", "Username or password is empty");
+
+            return false;
+        }
+
+        // other validations....
+
+
+        return true;
+    }
+
+    /**
+     * Login the user with input uname and pw
      * @param uname
      * @param pw
      */
     private void statementsVSPreparedStatements(String uname, String pw) {
         StringBuilder sb = new StringBuilder();
-        try (Connection conn = new DBConnector().getConnection()) {
+
+        try (Connection conn = new MyDatabaseConnector().getConnection()) {
 
             //Insecure statement, dynamic SQL...
             Statement stmt = conn.createStatement();
@@ -113,8 +142,12 @@ public class MainController implements Initializable {
                 sb = new StringBuilder();
                 sb.append("Invalid username or password. Please try again.");
             }
+            output = sb.toString();
 
-            String output = sb.toString();
+        } catch (Exception e) {
+            output = "Something went wrong..." + e.getMessage();
+        }
+        finally {
             Platform.runLater(() -> {
                 txtOutput.setText(output);
                 btnLogin.setDisable(false);
@@ -123,11 +156,27 @@ public class MainController implements Initializable {
                 pbProgress.setDisable(true);
                 pbProgress.setProgress(0);
             });
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
+
+
+    /**
+     * Displays an alertbox based on the input parameters
+     * @param alertType
+     * @param owner
+     * @param title
+     * @param message
+     */
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
+
 
     /**
      *
@@ -135,7 +184,7 @@ public class MainController implements Initializable {
      */
     private void batchSample() throws Exception {
 
-        try (Connection conn = new DBConnector().getConnection()) {
+        try (Connection conn = new MyDatabaseConnector().getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Users VALUES (?,?)");
 
             for (int i = 0; i < 10000; i++) {
