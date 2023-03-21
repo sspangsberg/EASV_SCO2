@@ -100,7 +100,7 @@ public class MainController implements Initializable {
         StringBuilder sb = new StringBuilder();
 
         try (Connection conn = new MyDatabaseConnector().getConnection()) {
-
+/*
             //Insecure statement, dynamic SQL...
             Statement stmt = conn.createStatement();
 
@@ -113,17 +113,17 @@ public class MainController implements Initializable {
             String sql = "SELECT * FROM Users WHERE username ='" + uname + "' AND password = '" + pw + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
-
+*/
 
 
 
             //Secure prepared SQL
-//          String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
-//
-//          PreparedStatement stmt = conn.prepareStatement(sql);
-//          stmt.setString(1, uname);
-//          stmt.setString(2, pw);
-//          ResultSet rs = stmt.executeQuery(); //Select query
+         String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
+
+          PreparedStatement stmt = conn.prepareStatement(sql);
+          stmt.setString(1, uname);
+          stmt.setString(2, pw);
+          ResultSet rs = stmt.executeQuery(); //Select query
 
 
 

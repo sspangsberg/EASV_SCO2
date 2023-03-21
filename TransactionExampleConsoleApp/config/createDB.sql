@@ -1,22 +1,23 @@
 -- Set the default DB
+-- replace INITIALS with your username (the text before the @easv.dk symbol)
 USE master;
 GO
-IF EXISTS(SELECT * FROM sys.databases WHERE name = 'SQLInjectionDB')
+IF EXISTS(SELECT * FROM sys.databases WHERE name = 'INITIALS_BankAccount')
 BEGIN
-  DROP DATABASE SQLInjectionDB;
+DROP DATABASE INITIALS_BankAccount;
 END
 
-CREATE DATABASE SQLInjectionDB;
+CREATE DATABASE INITIALS_BankAccount;
 GO
-USE SQLInjectionDB;
+USE SMSJ_BankAccount;
 GO
-CREATE TABLE Users (
-                       Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-                       username VARCHAR(50) NOT NULL,
-                       password VARCHAR(50) NOT NULL,
-);
 
+CREATE TABLE Account
+(
+    [ID] int IDENTITY NOT NULL PRIMARY KEY,
+    [Name] varchar(20) NULL,
+    [Balance] int NOT NULL
+)
 
--- Insert data
-INSERT INTO Users VALUES ('MrBurns', 'Hounds');
-INSERT INTO Users VALUES ('Homer', 'Burger');
+    INSERT INTO Account VALUES ('Forbrug', 0);
+INSERT INTO Account VALUES ('Opsparing', 1000);S ('Opsparing', 1000);

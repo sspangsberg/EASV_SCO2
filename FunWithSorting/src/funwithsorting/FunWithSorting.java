@@ -37,6 +37,8 @@ public class FunWithSorting {
         for (Car c: cars)
             System.out.println(c);
 
+
+        // Concrete comparator class
 //        CarComparatorBrand carSortBrand = new CarComparatorBrand();
 //        Comparator<Car> byTopSpeed = (Car car1, Car car2) -> {
 //
@@ -48,12 +50,23 @@ public class FunWithSorting {
 //                return 0;
 //        };
 //
-//        Collections.sort(cars, byTopSpeed);
+//        Collections.sort(cars);
 //
 //
-//        System.out.println("After sort....");
-//        for (Car c: cars)
-//            System.out.println(c);
+        // Stream sort
+        System.out.println("\n\nStream sort....");
+        cars.stream()
+                // normal compare lambda...
+                .sorted((o1, o2)->o1.getModel().compareTo(o2.getModel()))
+
+                // static function...
+                //.sorted(Comparator.comparing(Car::getModel))
+                .forEach(System.out::println);
+
+
+        //System.out.println("After sort....");
+        //for (Car c: cars)
+        //    System.out.println(c);
 //
 //
 

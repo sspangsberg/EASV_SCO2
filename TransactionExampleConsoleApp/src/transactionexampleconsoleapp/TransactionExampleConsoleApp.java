@@ -32,7 +32,7 @@ public class TransactionExampleConsoleApp {
         String depositMoneySQL = "UPDATE Account SET Balance = Balance + ? WHERE ID = ?";
 
         try {
-            conn = DBConnector.getConnection();
+            conn = new MyDatabaseConnector().getConnection();
 
             //Tell SQL Server not to auto-commit all SQL statements - we have to do this manually
             conn.setAutoCommit(false);
@@ -43,7 +43,7 @@ public class TransactionExampleConsoleApp {
             withdrawMoney.setInt(2, 2); //account id
             withdrawMoney.executeUpdate();
 
-            //int i = 10 / 0; //Simulate exception
+            int i = 10 / 0; //Simulate exception
 
             //SQL statement #2 - deposit 1000 to Account #1
             depositMoney = conn.prepareStatement(depositMoneySQL);
@@ -56,7 +56,7 @@ public class TransactionExampleConsoleApp {
             System.out.println("Transaction committed succesfully");
         } catch (Exception e) {
             if (conn != null) {
-                conn.rollback(); //an exception happened in executing the statements
+                //conn.rollback(); //an exception happened in executing the statements
                 System.out.println("Rolling back changes...");
             }
             e.printStackTrace();
@@ -73,7 +73,7 @@ public class TransactionExampleConsoleApp {
 
 
     private static void batchTest() {
-        try (Connection conn = new DBConnector().getConnection()) {
+        try (Connection conn = new MyDatabaseConnector().getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Account VALUES (?,?)");
 
             for (int i = 0; i < 10000; i++) {
