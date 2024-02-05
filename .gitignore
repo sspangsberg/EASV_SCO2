@@ -2,6 +2,8 @@
 out/
 dist/
 
+**/.DS_Store
+
 database.settings
 
 # mpeltonen/sbt-idea plugin
