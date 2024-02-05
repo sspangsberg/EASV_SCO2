@@ -1,4 +1,4 @@
-package testlambda;
+package testlambda.BE;
 
 /**
  * Class that implements our Functional Interface

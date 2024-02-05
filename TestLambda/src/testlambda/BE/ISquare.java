@@ -1,10 +1,10 @@
-package testlambda;
+package testlambda.BE;
 
 /**
  * Simple Functional Interface with single method to implement
  */
 @FunctionalInterface
-interface ISquare
+public interface ISquare
 {
     /**
      * The only method to implement

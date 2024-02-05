@@ -3,6 +3,8 @@ package dk.easv.threadsandbindings;
 // Java imports
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,15 +49,28 @@ public class MainController implements Initializable {
      */
     private void setupBindings() {
         // Uni-directionally binding (slider to txtBindUni)
-        //slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-        //    txtBindUni.setText(newValue.toString());
-        //});
 
+        // Add change listener to slider
+        // Lambda
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> txtBindUni.setText(newValue.toString()));
+
+        /*
+        // Anonymous inner class
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                txtBindUni.setText(newValue.toString());
+            }
+        });
+        */
+
+        /*
         // Bi-directionally
         Bindings.bindBidirectional(
                 txtDualBind.textProperty(),
                 slider.valueProperty(),
                 new ConverterHelper());
+        */
     }
 
 
@@ -69,13 +84,12 @@ public class MainController implements Initializable {
         btnHeavyTask.setText("Working...");
         lblHeavyTask.setText("");
 
+        // // Without its own Thread, this (simulateHardWork()) runs on the JavaFX GUI thread and locks up
 
-        Thread t = new Thread(() -> {
+        //Thread t = new Thread(() -> {
             simulateHardWork();
-        });
-        t.start();
-
-
+        //});
+        //t.start();
     }
 
     /**
@@ -83,16 +97,19 @@ public class MainController implements Initializable {
      */
     private void simulateHardWork() {
         try {
+            // Simulate hard work to lock up the GUI
             Thread.sleep(1);
             for (int i = 0; i < 10_000_000; i++) {
-                System.out.println("Doing some boring work on item #" + i);
+                System.out.println("Doing some boooring work on item #" + i);
             }
 
-            btnHeavyTask.setDisable(false);
-            btnHeavyTask.setText("Start Heavy Task");
-            lblHeavyTask.setText("Done");
+            // Call these lines of code on the JavaFX GUI Thread to avoid thread conflicts
+            Platform.runLater(() -> {
+                btnHeavyTask.setDisable(false);
+                btnHeavyTask.setText("Start Heavy Task");
+                lblHeavyTask.setText("Done");
+            });
+
         } catch (InterruptedException e) { }
     }
-
-
 }
