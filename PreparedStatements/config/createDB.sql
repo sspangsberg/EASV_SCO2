@@ -1,14 +1,14 @@
 -- Set the default DB
 USE master;
 GO
-IF EXISTS(SELECT * FROM sys.databases WHERE name = 'SQLInjectionDB')
+IF EXISTS(SELECT * FROM sys.databases WHERE name = '<PREFIX>_SQLInjectionDB')
 BEGIN
-  DROP DATABASE SQLInjectionDB;
+  DROP DATABASE <PREFIX>_SQLInjectionDB;
 END
 
-CREATE DATABASE SQLInjectionDB;
+CREATE DATABASE <PREFIX>_SQLInjectionDB;
 GO
-USE SQLInjectionDB;
+USE <PREFIX>_SQLInjectionDB;
 GO
 CREATE TABLE Users (
                        Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
