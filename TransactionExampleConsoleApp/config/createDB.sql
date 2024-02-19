@@ -2,14 +2,14 @@
 -- replace INITIALS with your username (the text before the @easv.dk symbol)
 USE master;
 GO
-IF EXISTS(SELECT * FROM sys.databases WHERE name = 'INITIALS_BankAccount')
+IF EXISTS(SELECT * FROM sys.databases WHERE name = '<INITIALS>_BankAccount')
 BEGIN
-DROP DATABASE INITIALS_BankAccount;
+DROP DATABASE <INITIALS>_BankAccount;
 END
 
-CREATE DATABASE INITIALS_BankAccount;
+CREATE DATABASE <INITIALS>_BankAccount;
 GO
-USE SMSJ_BankAccount;
+USE <INITIALS>_BankAccount;
 GO
 
 CREATE TABLE Account
@@ -19,5 +19,5 @@ CREATE TABLE Account
     [Balance] int NOT NULL
 )
 
-    INSERT INTO Account VALUES ('Forbrug', 0);
-INSERT INTO Account VALUES ('Opsparing', 1000);S ('Opsparing', 1000);
+INSERT INTO Account VALUES ('Spendings', 0);
+INSERT INTO Account VALUES ('Savings', 1000);
