@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inputvalidation.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inputvalidation.FXMLDocumentController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Button fx:id="btnValidate" layoutX="106.0" layoutY="130.0" onAction="#update" prefHeight="56.0" prefWidth="108.0" text="Validate" />
+      <TextField fx:id="txtRegex" layoutX="13.0" layoutY="28.0" prefHeight="25.0" prefWidth="293.0" promptText="Regex here" />
+      <Label fx:id="lblResult" layoutX="106.0" layoutY="106.0" prefHeight="17.0" prefWidth="108.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtInput" layoutX="13.0" layoutY="60.0" prefHeight="25.0" prefWidth="293.0" promptText="Input here" />
     </children>
 </AnchorPane>
