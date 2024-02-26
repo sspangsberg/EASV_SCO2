@@ -6,19 +6,17 @@
 
 package inputvalidation;
 
+// Java Imports
+import java.util.regex.Pattern;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import java.util.regex.PatternSyntaxException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.input.KeyEvent;
+
+
 
 /**
  *
@@ -32,40 +30,54 @@ public class FXMLDocumentController implements Initializable {
     private Label lblResult;
     @FXML
     private TextField txtInput;
-
-    private Pattern regex = null;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtRegex.textProperty().addListener((observable, oldValue, newValue) -> validate() );
+        txtInput.textProperty().addListener((observable, oldValue, newValue) -> validate() );
 
-        txtRegex.setOnKeyPressed(event -> {
-            regex = Pattern.compile(txtRegex.getText(), Pattern.CASE_INSENSITIVE);
-            validate(regex);
-        });
-    }
-
-    @FXML
-    private void update(ActionEvent actionEvent) {
-        // Email regex: [A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}
-        regex = Pattern.compile(txtRegex.getText(), Pattern.CASE_INSENSITIVE);
-        validate(regex);
+        lblResult.setText("Waiting for regex...");
+        lblResult.setStyle("-fx-background-color: black;");
     }
 
     /**
      *
-     * @param regex
      */
-    private void validate(Pattern regex) {
-        TextFormatter<?> formatter = new TextFormatter<>(change -> {
-            if (regex.matcher(change.getControlNewText()).matches()) {
-                lblResult.setStyle("-fx-background-color: green;");
-                return change; // allow this change to happen
-            } else {
-                lblResult.setStyle("-fx-background-color: red;");
-                return change; // prevent change
-            }
-        });
-        txtInput.setTextFormatter(formatter);
-    }
+    private void validate() {
 
+        try
+        {
+            if (txtRegex.getText().isEmpty())
+            {
+                lblResult.setText("Waiting for regex...");
+                lblResult.setStyle("-fx-background-color: black;");
+                return;
+            }
+
+            // Examples:
+            // Single Number: [0-9]
+            // Multiple Numbers: [0-9]*
+            // Lower-case Characters: [a-z]*
+            // Upper-case Characters: [A-Z]*
+            // Lower and upper cases: [a-zA-Z]*
+            // Special characters: [ .,_-]
+            // Specific text [a-zA-Z,.0-9 ]*Peter[a-z,.0-9 ]*
+            // Email regex: [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6} // aTc121@cDe3432.dD
+
+            lblResult.setText("");
+
+            if (Pattern.matches(txtRegex.getText(),txtInput.getText())) {
+                lblResult.setStyle("-fx-background-color: green;");
+                lblResult.setText("Match!");
+            }
+            else {
+                lblResult.setStyle("-fx-background-color: red;");
+                lblResult.setText("No match!");
+            }
+        }
+        catch (PatternSyntaxException err) {
+            lblResult.setText("Invalid regex...");
+            lblResult.setStyle("-fx-background-color: black;");
+        }
+    }
 }
