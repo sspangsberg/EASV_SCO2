@@ -24,6 +24,11 @@ public class Customer {
     /*
     @Override
     public int hashCode() {
+
+        return 0;
+
+
+
         int result = phoneNumber != null ? phoneNumber.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);

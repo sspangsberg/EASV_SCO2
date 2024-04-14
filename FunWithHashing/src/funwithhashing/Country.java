@@ -8,6 +8,7 @@ public class Country {
         this.name = name;
     }
 
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -17,10 +18,13 @@ public class Country {
 
         return name != null ? name.equals(country.name) : country.name == null;
     }
+    */
 
     @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+    public int hashCode()
+    {
+        return 1;
+        //return name != null ? name.hashCode() : 0;
     }
 
     @Override

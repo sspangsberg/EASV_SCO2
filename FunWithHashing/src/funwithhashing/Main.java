@@ -1,19 +1,8 @@
 
 package funwithhashing;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -24,16 +13,55 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static void main(String[] args) throws InterruptedException {
 
      //funWithHashing();
-
      //hashSetMapTest();
-     performanceTest();
+     //performanceTest();
+     hashMapThreadSafetyTest();
 
     }
 
+    /**
+     *
+     */
+    private static void hashMapThreadSafetyTest() throws InterruptedException {
 
+        final int NUMBER_OF_THREADS = 2;
+        final int NUMBER_OF_ITEMS = 1000;
+
+        //Map<Country, Country> myMap = new HashMap<>(); // requires "syncronized" block around myMap
+        Map<Country, Country> myMap = Collections.synchronizedMap(new HashMap<>()); // not scalable, allows null value/key
+        //Map<Country, Country> myMap = new ConcurrentHashMap<>(); // scalable, performs better in concurrent environment (allows read and write operations concurrently)
+
+
+        List<Thread> listOfThreads = new ArrayList<>();
+
+        // Create X Threads
+        for (int i = 0; i < NUMBER_OF_THREADS; i++) {
+            Thread thread = new Thread(() -> {
+
+
+                // Let Each thread insert X Items
+                for (int j = 0; j < NUMBER_OF_ITEMS; j++) {
+                    Country key = new Country(j + "");
+
+                    //synchronized (myMap) {
+                        myMap.put(key, key);
+                    //}
+                }
+
+            });
+            thread.start();
+            listOfThreads.add(thread);
+        }
+
+        for (Thread thread : listOfThreads) {
+            thread.join();
+        }
+
+        System.out.println("Count should be " + NUMBER_OF_THREADS * NUMBER_OF_ITEMS + ", actual is : " + myMap.size());
+    }
 
 
     /**
@@ -47,6 +75,15 @@ public class Main {
         //Set<Customer> customers = new HashSet();
         //Exercise 1
         Map<String,Customer> customersMap = new HashMap();
+
+
+        String email = "smsj@easv.dk";
+
+        email.hashCode();
+
+
+
+
 
         //HashMap
         customersMap.put(c1.getPhoneNumber(), c1);
@@ -85,7 +122,6 @@ public class Main {
 //            System.out.println(it.next());
 //        }
     }
-    
 
     
     /**
@@ -242,6 +278,17 @@ public class Main {
 //        for (Country key: countries.keySet()) {
 //            System.out.println(countries.get(key));
 //        }
+    }
+
+}
+
+class TempValue {
+    int value = 3;
+
+
+    @Override
+    public int hashCode() {
+        return 1; // All objects of this class will have same hashcode.
     }
 
 }
