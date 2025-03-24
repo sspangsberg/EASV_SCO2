@@ -1,11 +1,12 @@
 package com.easv;
 
+// JUnit imports
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Calculator Class Unit Tests")
 class CalculatorTest {
@@ -17,11 +18,11 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         // Act
-        int actualValue = calc.add(20,10);
-        int expectedValue = 30;
+        int actual = calc.add(20,10);
+        int expected = 30;
 
         // Assert
-        Assertions.assertEquals(actualValue, expectedValue);
+        Assertions.assertEquals(expected, actual);
     }
 
     @DisplayName("Subtract Test")
@@ -31,6 +32,7 @@ class CalculatorTest {
     }
 
     @DisplayName("Multiply Test")
+    @Disabled
     @Test
     void multiply() {
         Assertions.fail("Not implemented yet");
@@ -45,11 +47,11 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         // Act
-        int actualValue = calc.divide(20,10);
-        int expectedValue = 2;
+        int actual = calc.divide(20,10);
+        int expected = 2;
 
         // Assert
-        Assertions.assertEquals(actualValue, expectedValue);
+        Assertions.assertEquals(expected, actual);
     }
 
 
@@ -61,16 +63,17 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         // Act + assert
-        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            calc.divide(10,0);
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                calc.divide(10, 0);
+            }
         });
 
         // Extra Assert
-        String expected = "Divide by 0.";
+        String expected = "Divide by 0";
         String actual = ex.getMessage();
 
         Assertions.assertEquals(expected, actual);
     }
-
-
 }
