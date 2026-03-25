@@ -2,6 +2,9 @@ package com.easv;
 
 // Project imports
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+
 
 // Java imports
 import java.math.BigInteger;
@@ -10,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.sql.SQLOutput;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
@@ -29,7 +33,8 @@ public class Main {
         System.out.println("BCrypt (192):\t" + bcryptExample(pw));
         System.out.println("SHA2-256:\t\t" + messageDigestExample(pw,"SHA-256"));
         System.out.println("SHA3-256:\t\t" + messageDigestExample(pw,"SHA3-256"));
-        System.out.println("PBKDF2Example:\t" + PBKDF2Example(pw,false));
+        System.out.println("PBKDF2:\t\t\t" + PBKDF2Example(pw,false));
+        System.out.println("Argon2:\t\t\t" + argon2Example(pw));
     }
 
     /**
@@ -40,7 +45,9 @@ public class Main {
     public static String bcryptExample(String password) {
 
         // Hash password using the specified cost
-        String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+        int workFactor = 12;
+
+        String bcryptHashString = BCrypt.withDefaults().hashToString(workFactor, password.toCharArray());
         // Example hash: $2a$12$US00g/uMhoSBm.HiuieBjeMtoN69SN.GE25fCpldebzkryUyopws6
 
         // Verify hash with original password
@@ -48,6 +55,36 @@ public class Main {
         //System.out.println(result);
         return bcryptHashString;
     }
+
+
+    public static String argon2Example(String password) {
+
+        Argon2 argon2 = Argon2Factory.create();
+
+        try {
+            // Hash password
+            String argon2Hash = argon2.hash(
+                    2,  // iterations (linear).
+                    65536,  // memory in KB (64 MB)
+                    1,      // parallelism
+                    password.toCharArray()
+            );
+
+            //System.out.println("Hash: " + argon2Hash);
+
+            // Verify password
+            boolean isMatch = argon2.verify(argon2Hash, password.toCharArray());
+
+            //System.out.println("Password matches: " + isMatch);
+
+            return argon2Hash;
+
+        } finally {
+            // Wipe password from memory (important for security)
+            argon2.wipeArray(password.toCharArray());
+        }
+    }
+
 
 
     /**
